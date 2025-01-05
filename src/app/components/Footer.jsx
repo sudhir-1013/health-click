@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import logoImage from "./HealthClick-logo.png";
 import Link from "next/link";
 
 export default function Footer() {
@@ -11,22 +10,22 @@ export default function Footer() {
         {/* Logo */}
         <div className="mb-6 lg:mb-0">
           <Link href="/">
-            <Image src={logoImage} width={150} height={50} alt="logo-HealthClick" />
+            <Image src={'/Health-Click-Logo.png'} width={150} height={50} alt="logo-HealthClick" />
           </Link>
         </div>
 
         {/* Links */}
         <div className="flex flex-col lg:flex-row gap-4 mb-6 lg:mb-0 text-gray-800">
-          <Link href="#" className="hover:text-[#8BC34A]">
+          <Link href="#" className="hover:text-primaryTeal">
             About Us
           </Link>
-          <Link href="#" className="hover:text-[#8BC34A]">
+          <Link href="#" className="hover:text-primaryTeal">
             Contact
           </Link>
-          <Link href="#" className="hover:text-[#8BC34A]">
+          <Link href="#" className="hover:text-primaryTeal">
             Privacy Policy
           </Link>
-          <Link href="#" className="hover:text-[#8BC34A]">
+          <Link href="#" className="hover:text-primaryTeal">
             Terms of Service
           </Link>
         </div>
@@ -35,7 +34,7 @@ export default function Footer() {
         <div className="flex gap-4">
           <Link href="#">
             <svg
-              className="w-6 h-6 text-gray-800 hover:text-[#8BC34A]"
+              className="w-6 h-6 text-gray-800 hover:text-primaryTeal"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -46,7 +45,7 @@ export default function Footer() {
           </Link>
           <Link href="#">
             <svg
-              className="w-6 h-6 text-gray-800 hover:text-[#8BC34A]"
+              className="w-6 h-6 text-gray-800 hover:text-primaryTeal"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -57,7 +56,7 @@ export default function Footer() {
           </Link>
           <Link href="#">
             <svg
-              className="w-6 h-6 text-gray-800 hover:text-[#8BC34A]"
+              className="w-6 h-6 text-gray-800 hover:text-primaryTeal"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

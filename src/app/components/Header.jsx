@@ -2,22 +2,21 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import logoImage from "./HealthClick-logo.png";
 import Link from "next/link";
 
 export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <header className="flex flex-wrap sticky top-0 z-50 justify-between items-center py-4 px-5 lg:px-10 shadow-md">
+    <header className="flex flex-wrap sticky top-0 z-50 justify-between bg-white items-center py-4 px-5 lg:px-10 shadow-md">
       <div>
         <Link href="/">
-          <Image src={'/Health-Click-Logo.png'} width={164} height={55} alt="logo-HealthClick" />
+          <Image className="w-40 h-auto" src={'/Health-Click-Logo.png'} width={164} height={55} alt="logo-HealthClick" />
         </Link>
       </div>
 
       <button
-        className="block sm:hidden text-[#0056D6] focus:outline-none"
+        className="block md:hidden text-secondaryBlue focus:outline-none"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         <svg
@@ -32,16 +31,16 @@ export default function Header() {
       </button>
 
       <div
-        className={`fixed top-0 w-full left-0 h-full bg-[#FFDAB9] shadow-lg z-40 transform ${
+        className={`fixed top-0 w-full left-0 h-full bg-white shadow-lg z-40 transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out lg:hidden`}
+        } transition-transform duration-300 ease-in-out md:hidden`}
       >
         <div className="flex justify-between items-center px-5 py-4 shadow-md">
-          <Link href="/">
-            <Image src={logoImage} width={150} height={50} alt="logo-HealthClick" />
-          </Link>
+        <Link href="/">
+          <Image src={'/Health-Click-Logo.png'} width={164} height={55} alt="logo-HealthClick" />
+        </Link>
           <button
-            className="text-[#0056D6] focus:outline-none"
+            className="text-secondaryBlue focus:outline-none"
             onClick={() => setIsSidebarOpen(false)}
           >
             <svg
@@ -55,40 +54,52 @@ export default function Header() {
             </svg>
           </button>
         </div>
-        <nav className="flex flex-col gap-4 px-5 py-6 text-[#0056D6]">
-          <a href="#" className="hover:text-[#008080]">
+        <nav className="flex flex-col gap-4 px-5 py-6 text-primaryTeal">
+          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Get Appointment
           </a>
-          <a href="#" className="hover:text-[#008080]">
+          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+            Get Appointment
+          </a>
+          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+            Get Appointment
+          </a>
+          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Our Doctors
           </a>
           <Link href={"/auth/login"}>
-            <button className="text-sm px-4 py-2 border border-[#008080] text-[#008080] rounded-md hover:bg-[#008080] hover:text-white">
+            <button className="transition-all duration-300 text-sm px-4 py-2 border border-primaryTeal text-primaryTeal rounded-md hover:bg-primaryTeal hover:text-white">
               Login
             </button>
           </Link>
           <Link href={"/auth/register"}>
-            <button className="text-sm px-4 py-2 bg-[#008080] text-white rounded-md hover:bg-[#0056D6]">
+            <button className="transition-all duration-300 text-sm px-4 py-2 bg-primaryTeal text-white rounded-md hover:bg-secondaryBlue">
               Sign Up
             </button>
           </Link>
         </nav>
       </div>
 
-      <div className="hidden sm:!flex justify-center items-center gap-4 lg:gap-6">
-        <Link href="/get-appointment" className="text-[#0056D6] hover:text-[#008080]">
-          Get Appointment
+      <div className="hidden md:!flex justify-center items-center gap-4 lg:gap-6">
+        <Link href="/get-appointment" className="text-primaryTeal hover:text-secondaryBlue">
+          About Us
         </Link>
-        <Link href="#" className="text-[#0056D6] hover:text-[#008080]">
+        <Link href="/get-appointment" className="text-primaryTeal hover:text-secondaryBlue">
+          Services
+        </Link>
+        <Link href="#" className="text-primaryTeal hover:text-secondaryBlue">
           Our Doctors
         </Link>
+        <Link href="/get-appointment" className="text-primaryTeal hover:text-secondaryBlue">
+          Get Appointment
+        </Link>
         <Link href="/auth/login">
-          <button className="text-sm px-4 py-2 border border-[#008080] text-[#008080] rounded-md hover:bg-[#008080] hover:text-white">
+          <button className="transition-all duration-300 text-sm px-4 py-2 border border-primaryTeal text-primaryTeal rounded-md hover:bg-primaryTeal hover:text-white">
             Login
           </button>
         </Link>
         <Link href="/auth/register">
-          <button className="text-sm px-4 py-2 bg-[#008080] text-white rounded-md hover:bg-[#0056D6]">
+          <button className="transition-all duration-300 text-sm px-4 py-2 bg-primaryTeal text-white rounded-md hover:bg-secondaryBlue">
             Sign Up
           </button>
         </Link>
