@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import heroImage from "./hero-banner-img.jpg";
+import { FlipWords } from "@/components/ui/flip-words";
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const words = ["Anytime", "Anywhere", "Anyway", "Anyplace"];
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -33,7 +35,7 @@ export default function HeroSection() {
       <div className="flex container mx-auto flex-col lg:flex-row items-center">
         <div className="flex-1 w-full text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-6">
-            Book Your Doctor Appointment Online Anytime, Anywhere!
+            Book Your Doctor Appointment Online <FlipWords className={'text-primaryTeal'} words={words} />!
           </h2>
           <p className="text-lg lg:text-xl max-w-3xl mb-8">
             HealthClick makes it easy for you to connect with trusted doctors
@@ -77,7 +79,7 @@ export default function HeroSection() {
             alt="welcome"
             width={100}
             height={100}
-            style={parallaxStyle(30,30)}
+            style={parallaxStyle(30, 30)}
             className="hidden lg:block absolute top-0 left-[15%]"
           />
           <Image
