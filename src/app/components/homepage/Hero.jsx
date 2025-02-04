@@ -11,10 +11,10 @@ export default function HeroSection() {
   const words = ["Anytime", "Anywhere", "Anyway", "Anyplace"];
 
   return (
-    <section className="bg-gray-300 bg-opacity-20 mx-5 mt-5 lg:mx-10 text-black sm:px-5 py-10 lg:py-20">
+    <section className="bg-gray-300 bg-opacity-20 mx-5 mt-5 lg:mx-10 text-black px-5 py-10 lg:py-20">
       <div className="flex container mx-auto flex-col lg:flex-row items-center">
-        <div className="flex-1 w-full text-center lg:text-left">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-6">
+        <div className="flex-1 w-full flex justify-center items-center lg:items-start flex-col text-center lg:text-left">
+          <h2 className="text-3xl max-w-[290px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[550px] sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-6">
             Book Your Doctor Appointment Online{" "}
             <FlipWords className={"text-primaryTeal"} words={words} />!
           </h2>

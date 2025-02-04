@@ -1,4 +1,5 @@
 import AboutUs from "./components/homepage/AboutUs";
+import DoctorCategoriesTabs from "./components/homepage/doctorsCategoriesTabs";
 import GetAppointment from "./components/homepage/GetAppointment";
 import HeroSection from "./components/homepage/Hero";
 import HowItWorks from "./components/homepage/How";
@@ -13,6 +14,7 @@ export default function Home() {
    <AboutUs/>
    <OurDoctors/>
    <HowItWorks/>
+   <DoctorCategoriesTabs/>
    <WhyChoose/>
    <Testimonials/>
    <GetAppointment/>

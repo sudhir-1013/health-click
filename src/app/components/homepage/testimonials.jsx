@@ -1,6 +1,4 @@
-"use client"; // Ensure this is a client component
-import Image from "next/image";
-import { H2Grediant } from "../../../components/eleProvider";
+"use client";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 export default function Testimonials() {
@@ -48,7 +46,6 @@ export default function Testimonials() {
       <div className=" px-3 pt-10 pb-2 lg:pt-20 lg:px-20 bg-slate-400/50">
       <div className="container mx-auto text-center">
       </div>
-        <H2Grediant className="mb-0">What Our Users Say</H2Grediant>
         <AnimatedTestimonials testimonials={testimonials} />
       </div>
     </section>
