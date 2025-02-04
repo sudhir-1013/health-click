@@ -3,6 +3,7 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { H2Grediant } from "../eleProvider";
 
 export const AnimatedTestimonials = ({
   testimonials,
@@ -75,13 +76,14 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={700}
                     draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center" />
+                    className="h-full max-w-xl mx-auto w-full rounded-3xl object-cover object-center" />
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex justify-between flex-col py-4">
+        <div className="flex justify-between flex-col py-4">.
+        <H2Grediant className="mb-0">What Our Users Say</H2Grediant>
           <motion.div
             key={active}
             initial={{
