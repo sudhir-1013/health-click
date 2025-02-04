@@ -12,7 +12,7 @@ export default function HowItWorks() {
       <div className="container relative flex justify-center items-center md:items-start flex-col md:flex-row mx-auto">
 
         <div className="flex-1 md:sticky top-32 z-10">
-        <H2Grediant class> How HealthClick Works </H2Grediant>
+        <H2Grediant className="mb-2"> How HealthClick Works </H2Grediant>
         <p className="text-lg text-black">
           Simple Steps to Connect with Your Trusted Doctors From finding the
           right doctor to booking your appointment, HealthClick ensures a
@@ -20,7 +20,7 @@ export default function HowItWorks() {
         </p>
         <Image src={'/how-icons/How.png'} width={600} height={600} alt="How HealthClick Works"/>
         </div>
-        <div className="flex-1 space-y-10">
+        <div className="flex-1 flex flex-col justify-end items-end space-y-10">
   <Tilt
     tiltMaxAngleX={10}
     tiltMaxAngleY={10}
@@ -29,7 +29,7 @@ export default function HowItWorks() {
     gyroscope={true}
     className="cursor-pointer max-w-lg mx-auto"
   >
-    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-96 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
+    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-80 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
       <h3 className="font-semibold mb-4 text-2xl text-primaryTeal">
         <span className="font-bold text-secondaryBlue">1.</span> Go to HealthClick
       </h3>
@@ -54,7 +54,7 @@ export default function HowItWorks() {
     gyroscope={true}
     className="cursor-pointer max-w-lg mx-auto"
   >
-    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-96 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
+    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-80 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
       <h3 className="font-semibold mb-4 text-2xl text-primaryTeal">
         <span className="font-bold text-secondaryBlue">2.</span> Select Your Doctor
       </h3>
@@ -79,7 +79,7 @@ export default function HowItWorks() {
     gyroscope={true}
     className="cursor-pointer max-w-lg mx-auto"
   >
-    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-96 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
+    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-80 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
       <h3 className="font-semibold mb-4 text-2xl text-primaryTeal">
         <span className="font-bold text-secondaryBlue">3.</span> Book Your Appointment
       </h3>
@@ -104,7 +104,7 @@ export default function HowItWorks() {
     gyroscope={true}
     className="cursor-pointer max-w-lg mx-auto"
   >
-    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-96 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
+    <div className="flex justify-center items-start flex-col p-8 rounded-lg min-h-80 shadow-xl transition-all duration-300 ease-in-out relative transform backdrop-blur-md group bg-white">
       <h3 className="font-semibold mb-4 text-2xl text-primaryTeal">
         <span className="font-bold text-secondaryBlue">4.</span> Consult the Doctor
       </h3>

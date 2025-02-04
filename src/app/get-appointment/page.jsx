@@ -77,7 +77,8 @@ const Page = () => {
                 setEmailSent(true); // Set email sent status
               },
               (error) => {
-                console.error("Failed to send user email...", error);
+                console.log("Failed to send user email...", error);
+                
               }
             );
         },
@@ -90,7 +91,7 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center bg-[url('/get-apoointment-bg-sm.png')] md:bg-[url('/get-apoointment-bg.png')] px-2 md:px-4 lg:px-10 py-20 h-auto bg-cover bg-[center_center]">
+    <div className="w-full flex justify-center items-cente bg-primaryTeal  px-2 md:px-4 lg:px-10 py-20 h-auto bg-cover bg-[center_center]">
       <div className="flex justify-center items-center flex-col lg:flex-row  w-full gap-8 px-6 md:px-14 py-16 lg:py-24 rounded-lg backdrop-blur-sm">
         <div className="flex-1 w-full text-center lg:text-left">
           <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-custom-gradient-h2 bg-[length:200%_200%] animate-gradient-slide tracking-tight inline-block mb-10 ">
@@ -108,7 +109,7 @@ const Page = () => {
           />
 
           {emailSent && (
-            <p className="text-green-500 font-semibold mt-6 text-start animate-bounce ">
+            <p className="text-black font-semibold mt-6 text-start animate-bounce ">
               Appointment request submitted and confirmation email sent!
             </p>
           )}
@@ -133,6 +134,7 @@ const Page = () => {
               autoComplete="on"
               autoCapitalize="on"
               autoCorrect="on"
+              required
               className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
             />
           </div>
@@ -150,6 +152,7 @@ const Page = () => {
               autoComplete="on"
               autoCapitalize="on"
               autoCorrect="on"
+              required
               className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
             />
           </div>
@@ -166,6 +169,7 @@ const Page = () => {
               autoComplete="on"
               autoCapitalize="on"
               autoCorrect="on"
+              required
               className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
             />
           </div>
@@ -180,6 +184,7 @@ const Page = () => {
               onChange={handleChange}
               autoComplete="on"
               autoCapitalize="on"
+              required
               autoCorrect="on"
               className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
             >
@@ -206,6 +211,7 @@ const Page = () => {
               onChange={handleChange}
               autoComplete="on"
               autoCapitalize="on"
+              required
               autoCorrect="on"
               className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
             />
@@ -234,7 +240,7 @@ const Page = () => {
             Book Appointment
           </button>
           {emailSent && (
-            <p className="text-green-500 font-semibold mt-6 text-start animate-bounce ">
+            <p className="text-black font-semibold mt-6 text-start animate-bounce ">
               Appointment request submitted and confirmation email sent!
             </p>
           )}

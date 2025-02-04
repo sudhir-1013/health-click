@@ -1,10 +1,3 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { H2Grediant } from "@/components/eleProvider";
 import Image from "next/image";
 
@@ -76,49 +69,41 @@ export default function OurDoctors() {
     <section className="bg-primaryTeal bg-opacity-5 text-white py-10">
       <div className="container mx-auto px-4">
         <H2Grediant className="inline-block mb-2">Our Doctors</H2Grediant>
-        <Carousel>
-          <CarouselContent>
-            {doctors.map((doctor) => (
-              <CarouselItem
-                key={doctor.id}
-                className="flex-shrink-0 basis-full my-5 md:basis-1/2 lg:basis-1/4 px-4"
-              >
-                <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden w-full hover:scale-105 transition-transform">
-                  <div className="bg-primaryTeal p-2">
-                    <Image
-                      src={doctor.photo}
-                      alt={doctor.name}
-                      width={320}
-                      height={160}
-                      className="object-cover object-top w-24 h-24 m-auto rounded-full"
-                    />
-                  </div>
-                  <div className="text-center p-4">
-                    <h3 className="text-xl font-semibold">{doctor.name}</h3>
-                    <p className="text-teal-300">{doctor.speciality}</p>
-                    <p className="mt-2 text-sm">
-                      <span className="font-semibold">Experience:</span>{" "}
-                      {doctor.experience}
-                    </p>
-                    <p className="mt-1 text-sm">
-                      <span className="font-semibold">Hospital:</span>{" "}
-                      {doctor.hospital}
-                    </p>
-                    <p className="mt-2 text-sm">{doctor.description}</p>
-                    <a
-                      href="#contact"
-                      className="inline-block mt-4 px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition"
-                    >
-                      Book Appointment
-                    </a>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden lg:inline-flex absolute bg-primaryTeal text-secondaryPeach size-12 hover:bg-secondaryBlue duration-300 transition-all -translate-x-2" />
-          <CarouselNext className="hidden lg:inline-flex absolute bg-primaryTeal text-secondaryPeach size-12 hover:bg-secondaryBlue duration-300 transition-all -translate-x-2" />
-        </Carousel>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {doctors.map((doctor) => (
+            <div
+              key={doctor.id}
+              className="bg-white text-black rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
+            >
+              <div className="bg-primaryTeal p-2">
+                <Image
+                  src={doctor.photo}
+                  alt={doctor.name}
+                  width={320}
+                  height={160}
+                  className="object-cover object-top w-24 h-24 m-auto rounded-full"
+                />
+              </div>
+              <div className="text-center p-4">
+                <h3 className="text-xl font-semibold">{doctor.name}</h3>
+                <p className="text-teal-300">{doctor.speciality}</p>
+                <p className="mt-2 text-sm">
+                  <span className="font-semibold">Experience:</span> {doctor.experience}
+                </p>
+                <p className="mt-1 text-sm">
+                  <span className="font-semibold">Hospital:</span> {doctor.hospital}
+                </p>
+                <p className="mt-2 text-sm">{doctor.description}</p>
+                <a
+                  href="#contact"
+                  className="inline-block mt-4 px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition"
+                >
+                  Book Appointment
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

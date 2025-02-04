@@ -8,7 +8,7 @@ export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <header className="flex flex-wrap sticky top-0 z-50 justify-between bg-white items-center py-4 px-5 lg:px-10 shadow-md">
+    <header className="flex flex-wrap sticky top-0 z-[99999999] justify-between bg-white items-center py-4 px-5 lg:px-10 shadow-md">
       <div>
         <Link href="/">
           <Image className="w-40 h-auto" src={'/Health-Click-Logo.png'} width={164} height={55} alt="logo-HealthClick" />
