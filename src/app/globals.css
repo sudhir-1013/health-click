@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*::selection{
+    background-color: #008080;
+    color: #FFDAB9;
+}
+
+p, span, li, a{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+    
+h1,h2, h3, h4{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
