@@ -20,7 +20,7 @@ export default function HeroSection() {
           </h2>
           <p className="text-lg lg:text-xl max-w-3xl mb-8">
             HealthClick makes it easy for you to connect with trusted doctors
-            and schedule appointments conveniently from home.
+            and schedule appointments conveniently from home D.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start w-full gap-4">
             <button
