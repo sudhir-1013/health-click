@@ -20,3 +20,7 @@ p, span, li, a{
 h1,h2, h3, h4{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+#appointmentDate[type="date"] {
+    color-scheme: dark; /* Ensures icons and elements match dark themes */
+  }

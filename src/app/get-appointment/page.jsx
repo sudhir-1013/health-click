@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState } from "react";
+import { H2 } from "@/components/eleProvider";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { H2Grediant } from "@/components/eleProvider";
 
-const Page = () => {
+export const GetAppointmentPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,15 +15,28 @@ const Page = () => {
   });
 
   const [emailSent, setEmailSent] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
+    // Validation check
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.appointmentDate ||
+      !formData.doctorType ||
+      !formData.reason ||
+      !formData.message
+    ) {
+      setStatusMessage("Please Fill all the Fields");
+      return; // Stop execution if any field is missing
+    }
+  
     const adminTemplateParams = {
       user_name: formData.name,
       user_email: formData.email,
@@ -33,7 +45,7 @@ const Page = () => {
       appointment_reason: formData.reason,
       message: formData.message,
     };
-
+  
     const userTemplateParams = {
       user_name: formData.name,
       user_email: formData.email,
@@ -42,14 +54,14 @@ const Page = () => {
       appointment_reason: formData.reason,
       message: formData.message,
     };
-
+  
     // Email to admin
     emailjs
       .send(
-        "service_fhxd08m", // Replace with your service ID
-        "template_lnd9bwt", // Replace with admin template ID
+        "service_fhxd08m",
+        "template_lnd9bwt",
         adminTemplateParams,
-        "2Lq5yaxQBhKrIW7Ej" // Replace with your Public Key
+        "2Lq5yaxQBhKrIW7Ej"
       )
       .then(
         (response) => {
@@ -58,14 +70,14 @@ const Page = () => {
             response.status,
             response.text
           );
-
+  
           // Email to user
           emailjs
             .send(
-              "service_fhxd08m", // Replace with your service ID
-              "template_z597car", // Replace with user template ID
+              "service_fhxd08m",
+              "template_z597car",
               userTemplateParams,
-              "2Lq5yaxQBhKrIW7Ej" // Replace with your Public Key
+              "2Lq5yaxQBhKrIW7Ej"
             )
             .then(
               (response) => {
@@ -75,179 +87,207 @@ const Page = () => {
                   response.text
                 );
                 setEmailSent(true); // Set email sent status
+                setStatusMessage(
+                  "email sent successfully!",
+                  <br />,
+                  "Please Check Your Email"
+                );
+                setSuccessMsg("Your appointment request has been sent successfully!");
               },
               (error) => {
                 console.log("Failed to send user email...", error);
-                
+                setStatusMessage("Please Fill all the Fields Correctly.");
               }
             );
         },
         (error) => {
-          console.error("Failed to send admin email...", error);
+          console.log("Failed to send admin email...", error);
+          setStatusMessage("email sent successfully!", <br />, "Please Check Your Email");
         }
       );
-
-    console.log(formData);
+      console.log(formData);
   };
-
+  
   return (
-    <div className="w-full flex justify-center items-cente bg-primaryTeal  px-2 md:px-4 lg:px-10 py-20 h-auto bg-cover bg-[center_center]">
-      <div className="flex justify-center items-center flex-col lg:flex-row  w-full gap-8 px-6 md:px-14 py-16 lg:py-24 rounded-lg backdrop-blur-sm">
-        <div className="flex-1 w-full text-center lg:text-left">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-custom-gradient-h2 bg-[length:200%_200%] animate-gradient-slide tracking-tight inline-block mb-10 ">
-            Book Your Appointment
-          </h2>
-          <p className="text-white mt-2 text-sm md:text-base">
-            Schedule your appointment quickly and easily.
-          </p>
-          <Image
-            src="/get-appointment-vector-img.svg"
-            alt="Appointment illustration"
-            width={200}
-            height={200}
-            className="mt-6 mx-auto lg:mx-0"
-          />
-
-          {emailSent && (
-            <p className="text-black font-semibold mt-6 text-start animate-bounce ">
-              Appointment request submitted and confirmation email sent!
+    <>
+      <section className="container mx-auto w-full bg-[#f7f6f5] py-10 md:py-20 px-5 lg:px-10">
+        <div className="!relative w-full flex justify-start items-start flex-col lg:flex-row">
+          <div className="flex-1 lg:sticky top-20 z-10 size-full text-lg text-start flex justify-start items-start flex-col md:p-5 bg-[#f7f6f5]">
+            <H2 className="">See HealthClick in Action</H2>
+            <p className="text-lg mb-5">
+              Schedule an online doctor consultation today.
             </p>
-          )}
-        </div>
-
-        <form
-          noValidate
-          onSubmit={handleSubmit}
-          className="space-y-6 flex-1 w-full"
-        >
-          <div>
-            <label htmlFor="name" className="text-sm text-white">
-              Full Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              autoCorrect="on"
-              required
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
-            />
+            <ul className="space-y-2 mb-5">
+              <li>
+                <b className="text-primaryTeal">✔</b> Find the right doctor for
+                your needs
+              </li>
+              <li>
+                <b className="text-primaryTeal">✔</b> Get expert medical advice
+                anytime, anywhere
+              </li>
+              <li>
+                <b className="text-primaryTeal">✔</b> Book hassle-free
+                appointments online
+              </li>
+            </ul>
+            <div>
+              <p>
+                “ Trusted by thousands of patients for quality healthcare. ”
+              </p>
+            </div>
+            {
+                <p className="text-black font-semibold mt-6 text-start animate-bounce ">
+                  {statusMessage}
+                </p>
+              }
           </div>
-          <div>
-            <label htmlFor="email" className="text-sm text-white">
-              Email Address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              autoCorrect="on"
-              required
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="appointmentDate" className="text-sm text-white">
-              Appointment Date
-            </label>
-            <input
-              id="appointmentDate"
-              name="appointmentDate"
-              type="date"
-              value={formData.appointmentDate}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              autoCorrect="on"
-              required
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="doctorType" className="text-sm text-white">
-              Type of Doctor
-            </label>
-            <select
-              id="doctorType"
-              name="doctorType"
-              value={formData.doctorType}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              required
-              autoCorrect="on"
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
+          <div className="flex-1 bg-white flex justify-center mt-10 lg:mt-0 items-center flex-col size-full">
+            <form
+              noValidate
+              onSubmit={handleSubmit}
+              className="space-y-6 p-4 flex-1 w-full"
             >
-              <option value="" disabled>
-                Select Doctor Type
-              </option>
-              <option value="general">General Physician</option>
-              <option value="cardiologist">Cardiologist</option>
-              <option value="dermatologist">Dermatologist</option>
-              <option value="pediatrician">Pediatrician</option>
-              <option value="orthopedic">Orthopedic</option>
-            </select>
+              <div>
+                <label htmlFor="name" className="text-sm text-white">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Your Full Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  autoCorrect="on"
+                  required
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-sm text-white">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  autoCorrect="on"
+                  required
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
+                />
+              </div>
+              <div>
+                <label htmlFor="appointmentDate" className="text-sm text-white">
+                  Appointment Date
+                </label>
+                <input
+                  id="appointmentDate"
+                  name="appointmentDate"
+                  type="date"
+                  value={formData.appointmentDate}
+                  onChange={(e) => {
+                    const selectedDate = new Date(e.target.value);
+                    const today = new Date();
+                    if (selectedDate < today) {
+                      alert("Past dates are not allowed!");
+                      e.target.value = today.toISOString().split("T")[0];
+                    }
+
+                    handleChange(e);
+                  }}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  autoCorrect="on"
+                  required
+                  min={new Date().toISOString().split("T")[0]} // Restricts past dates
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white after:text-white before:text-white placeholder-gray-400 autofill:bg-gray-800"
+                />
+              </div>
+              <div>
+                <label htmlFor="doctorType" className="text-sm text-white">
+                  Type of Doctor
+                </label>
+                <select
+                  id="doctorType"
+                  name="doctorType"
+                  value={formData.doctorType}
+                  onChange={handleChange}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  required
+                  autoCorrect="on"
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
+                >
+                  <option value="" disabled>
+                    Select Doctor Type
+                  </option>
+                  <option value="general">General Physician</option>
+                  <option value="cardiologist">Cardiologist</option>
+                  <option value="dermatologist">Dermatologist</option>
+                  <option value="pediatrician">Pediatrician</option>
+                  <option value="orthopedic">Orthopedic</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="reason" className="text-sm text-white">
+                  Reason for Appointment
+                </label>
+                <input
+                  id="reason"
+                  name="reason"
+                  type="text"
+                  placeholder="Reason for visit"
+                  value={formData.reason}
+                  onChange={handleChange}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  required
+                  autoCorrect="on"
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="text-sm text-white">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Additional information (optional)"
+                  value={formData.message}
+                  onChange={handleChange}
+                  autoComplete="on"
+                  autoCapitalize="on"
+                  autoCorrect="on"
+                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-primaryTeal text-white hover:opacity-80"
+              >
+                Book Appointment
+              </button>
+              {
+                <p className="text-black font-semibold mt-6 text-start animate-bounce ">
+                  {statusMessage}
+                </p>
+              }
+            </form>
           </div>
-          <div>
-            <label htmlFor="reason" className="text-sm text-white">
-              Reason for Appointment
-            </label>
-            <input
-              id="reason"
-              name="reason"
-              type="text"
-              placeholder="Reason for visit"
-              value={formData.reason}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              required
-              autoCorrect="on"
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="text-sm text-white">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              placeholder="Additional information (optional)"
-              value={formData.message}
-              onChange={handleChange}
-              autoComplete="on"
-              autoCapitalize="on"
-              autoCorrect="on"
-              className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-400"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-primaryTeal text-white hover:opacity-80"
-          >
-            Book Appointment
-          </button>
-          {emailSent && (
-            <p className="text-black font-semibold mt-6 text-start animate-bounce ">
-              Appointment request submitted and confirmation email sent!
-            </p>
-          )}
-        </form>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   );
 };
 
-export default Page;
+export default GetAppointmentPage;

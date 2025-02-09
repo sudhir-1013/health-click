@@ -35,8 +35,9 @@ export const AnimatedTestimonials = ({
   };
   return (
     (<div
-      className="mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 pb-20">
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+      className="mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 pb-20 overflow-hidden">
+                <H2Grediant className="mb-0 md:hidden">What Our Users Say</H2Grediant>
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-20">
         <div>
           <div className="relative h-96 w-full">
             <AnimatePresence>
@@ -76,14 +77,14 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={700}
                     draggable={false}
-                    className="h-full max-w-xl mx-auto w-full rounded-3xl object-cover object-center" />
+                    className="h-full max-w-[80%] sm:max-w-xl mx-auto w-full rounded-3xl object-cover object-center" />
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         </div>
         <div className="flex justify-between flex-col py-4">.
-        <H2Grediant className="mb-0">What Our Users Say</H2Grediant>
+        <H2Grediant className="mb-0 hidden md:block">What Our Users Say</H2Grediant>
           <motion.div
             key={active}
             initial={{

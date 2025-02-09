@@ -43,8 +43,8 @@ export default function Testimonials() {
 
   return (
     <section className="bg-[url('/testimonials/testimonals-bg.svg')] bg-no-repeat bg-fixed bg-cover bg-center">
-      <div className=" px-3 pt-10 pb-2 lg:pt-20 lg:px-20 bg-slate-400/50">
-      <div className="container mx-auto text-center">
+      <div className="px-5 lg:px-10 pt-10 pb-2 lg:pt-20 bg-slate-400/50">
+      <div className="container overflow-hidden mx-auto text-center">
       </div>
         <AnimatedTestimonials testimonials={testimonials} />
       </div>

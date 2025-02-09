@@ -13,7 +13,7 @@ export function H2Grediant({ children, className = "" }) {
 // ================================================================================== H2 ==================================================================================
 export function H2({ children, className = "" }) {
   return (
-    <h2 className={`text-4xl font-semibold text-black mb-4 ${className}`}>
+    <h2 className={`text-3xl md:text-4xl font-semibold text-black mb-4 ${className}`}>
       {children}
     </h2>
   );

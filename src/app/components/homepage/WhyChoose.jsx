@@ -8,7 +8,7 @@ import Tilt from "react-parallax-tilt";
 
 export default function WhyChoose() {
   return (
-    <section className="mt-40 text-gray-900 bg-gray-100 px-5 py-10 lg:px-32 lg:py-20">
+    <section className="pt-40 text-gray-900 bg-gray-100 px-5 lg:px-10 py-10 lg:py-20">
       <div className="container mx-auto grid grid-cols-1 gap-10">
         {/* Introduction Section */}
         <div className="text-center">
