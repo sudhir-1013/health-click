@@ -55,25 +55,25 @@ export default function Header() {
           </button>
         </div>
         <nav className="flex flex-col gap-4 px-5 py-6 text-primaryTeal">
-          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+          <a onClick={()=>{setIsSidebarOpen(false)}} href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Get Appointment
           </a>
-          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+          <a onClick={()=>{setIsSidebarOpen(false)}} href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Get Appointment
           </a>
-          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+          <a onClick={()=>{setIsSidebarOpen(false)}} href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Get Appointment
           </a>
-          <a href="#" className="text-primaryTeal hover:text-secondaryBlue">
+          <a onClick={()=>{setIsSidebarOpen(false)}} href="#" className="text-primaryTeal hover:text-secondaryBlue">
             Our Doctors
           </a>
           <Link href={"/auth/login"}>
-            <button className="transition-all duration-300 text-sm px-4 py-2 border border-primaryTeal text-primaryTeal rounded-md hover:bg-primaryTeal hover:text-white">
+            <button onClick={()=>{setIsSidebarOpen(false)}} className="transition-all duration-300 text-sm px-4 py-2 border border-primaryTeal text-primaryTeal rounded-md hover:bg-primaryTeal hover:text-white">
               Login
             </button>
           </Link>
           <Link href={"/auth/register"}>
-            <button className="transition-all duration-300 text-sm px-4 py-2 bg-primaryTeal text-white rounded-md hover:bg-secondaryBlue">
+            <button onClick={()=>{setIsSidebarOpen(false)}} className="transition-all duration-300 text-sm px-4 py-2 bg-primaryTeal text-white rounded-md hover:bg-secondaryBlue">
               Sign Up
             </button>
           </Link>

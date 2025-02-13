@@ -20,3 +20,41 @@ export async function RegisterUser(data) {
     throw error;
   }
 }
+
+export async function loginUser(formData, toast) {
+  try {
+    console.log("Sending login request with:", formData); // Debugging
+
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData), // FIXED: Removed extra wrapping
+    });
+
+    const data = await res.json();
+
+    console.log("Response received:", data); // Debugging
+
+    if (res.ok) {
+      localStorage.setItem("token", data.token);
+      toast({
+        title: "Login Successful",
+        description: "Welcome back!",
+      });
+      return data.user;
+    } else {
+      toast({
+        title: "Login Failed",
+        description: data.message || "Invalid credentials",
+        variant: "destructive",
+      });
+    }
+  } catch (err) {
+    console.log("Login Error:", err); // Debugging
+    toast({
+      title: "Error",
+      description: "Something went wrong. Please try again!",
+      variant: "destructive",
+    });
+  }
+}
