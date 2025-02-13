@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { GlobalContextProvider } from "../../helpers/context";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,9 +20,9 @@ export const metadata = {
   title: "Health Click",
   description: "Doctor Appointment Site",
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -29,10 +31,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        <Header/>
-        {children}
-        <Footer/>
+      >
+        <GlobalContextProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </GlobalContextProvider>
       </body>
     </html>
   );

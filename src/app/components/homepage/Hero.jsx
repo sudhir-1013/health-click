@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
-import heroImage from "./hero-banner-img.jpg";
 import { FlipWords } from "@/components/ui/flip-words";
 
 export default function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const words = ["Anytime", "Anywhere", "Anyway", "Anyplace"];
 
   return (
@@ -20,7 +17,7 @@ export default function HeroSection() {
           </h2>
           <p className="text-lg lg:text-xl max-w-3xl mb-8">
             HealthClick makes it easy for you to connect with trusted doctors
-            and schedule appointments conveniently from home D.
+            and schedule appointments conveniently from home.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start w-full gap-4">
             <button

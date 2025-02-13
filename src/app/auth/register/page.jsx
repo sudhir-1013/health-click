@@ -1,6 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RegisterUser } from "../../../../helpers/page";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { UseGlobalContext } from "../../../../helpers/context";
 
 export default function Signup() {
   const [registerFormData, setRegisterFormData] = useState({
@@ -9,6 +13,21 @@ export default function Signup() {
     password: "",
     confirmpassword: "",
   });
+
+  const router = useRouter();
+  
+  const {toast} = useToast();
+  const { user } = UseGlobalContext();
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+      toast({
+        title: `${user.name || "Sser"} is already logged in`,
+        description: `${user.name || "Sser"} is already logged in`,
+        variant: "destructive",
+      });
+    }
+  }, [user, router, toast]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +38,7 @@ export default function Signup() {
     e.preventDefault();
 
     if (registerFormData.password !== registerFormData.confirmpassword) {
-      return console.error("Passwords do not match!");
+      return console.log("Passwords do not match!");
     }
 
     try {
@@ -30,27 +49,18 @@ export default function Signup() {
       });
       console.log("User Created Successfully:", createUser);
     } catch (error) {
-      console.error("Cannot create user. Please try again:", error.message);
+      console.log("Cannot create user. Please try again:", error.message);
     }
   };
 
   return (
-    <div className="h-screen bg-gray-50 flex justify-center items-center bg-fixed bg-cover bg-[url('/sign-up-bg-fixed.jpg')]">
-      <div className="max-w-screen-lg backdrop-blur-sm mx-auto shadow-2xl rounded-lg flex flex-col md:flex-row overflow-hidden">
-        {/* Welcome Section */}
-        <div className="w-full md:w-1/2 p-8 bg-teal-100">
-          <h1 className="text-3xl font-bold text-center text-teal-700 mt-6 mb-4">Welcome</h1>
-          <p className="text-lg text-center text-teal-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+    <div className="h-screen px-5 my-10 flex justify-center items-center bg-fixed bg-cover bg-[url('/sign-up-bg-fixed.jpg')]">
+      <div className="w-full mx-auto rounded-lg flex flex-col md:flex-row overflow-hidden">
+        <div className="w-full relative md:w-1/2 p-8 bg-[url('/sign-up.png')] bg-contain bg-no-repeat bg-center bg-white">
         </div>
 
-        {/* Signup Form Section */}
-        <div className="w-full md:w-1/2 p-8 bg-white">
-          <h1 className="text-2xl xl:text-3xl font-bold text-center text-blue-700 mt-6">
-            Sign up for Templatana
-          </h1>
+        <div className="w-full md:w-1/2 p-8 bg-gray-50 rounded-lg">
+          <Image src={'/Health-Click-Logo.png'} className="mx-auto" alt="Health-Click" height={200} width={200} />
           <form className="mt-8" onSubmit={handleRegisterSubmit}>
             {[
               { name: "name", placeholder: "Name" },
@@ -65,16 +75,20 @@ export default function Signup() {
                   name={name}
                   value={registerFormData[name]}
                   onChange={handleChange}
-                  className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-300 text-sm focus:outline-none focus:border-blue-500"
+                  className="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 text-sm focus:outline-none focus:border-primaryTeal"
                 />
               </div>
             ))}
             <button
               type="submit"
-              className="mt-5 w-full py-4 rounded-lg bg-blue-500 text-white hover:bg-teal-500 transition duration-300"
+              className="mt-5 w-full py-4 rounded-lg bg-primaryTeal text-white transition duration-300"
             >
               Sign Up
             </button>
+            <div className="text-center w-full mt-5">
+            <p>Already have an Account?</p>
+            <a href="/auth/login" className="px-4 py-1 text-primaryTeal underline text-center mx-auto">Log in</a>
+            </div>
           </form>
         </div>
       </div>
