@@ -39,14 +39,14 @@ export async function loginUser(formData, toast) {
       localStorage.setItem("token", data.token);
       toast({
         title: "Login Successful",
-        description: "Welcome back!",
+        description: `Welcome back! ${data.user.name || ""}`,
       });
       return data.user;
     } else {
       toast({
         title: "Login Failed",
         description: data.message || "Invalid credentials",
-        variant: "destructive",
+        variant: "default",
       });
     }
   } catch (err) {
@@ -54,7 +54,7 @@ export async function loginUser(formData, toast) {
     toast({
       title: "Error",
       description: "Something went wrong. Please try again!",
-      variant: "destructive",
+      variant: "default",
     });
   }
 }

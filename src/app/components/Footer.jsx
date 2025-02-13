@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Logo */}
         <div className="mb-6 lg:mb-0">
           <Link href="/">
-            <Image src={'/Health-Click-Logo.png'} width={150} height={50} alt="logo-HealthClick" />
+            <Image className="w-40 h-auto" priority src={'/Health-Click-Logo.png'} width={150} height={50} alt="logo-HealthClick" />
           </Link>
         </div>
 

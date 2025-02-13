@@ -5,6 +5,7 @@ import { UseGlobalContext } from "../../../../helpers/context";
 import { loginUser } from "../../../../helpers/page";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { H3Grediant } from "@/components/eleProvider";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({
@@ -22,7 +23,7 @@ export default function Login() {
       toast({
         title: `${user.name || "Sser"} is already logged in`,
         description: `${user.name || "Sser"} is already logged in`,
-        variant: "destructive",
+        variant: "default",
       });
     }
   }, [user, router, toast]);
@@ -36,24 +37,21 @@ export default function Login() {
   const handleLoginUser = (e) =>{
     e.preventDefault()
     loginUser(loginFormData, toast)
+    if(loginUser){
+      router.push("/")
+    }
   }
 
   console.log(loginFormData);
 
   return (
-    <div className="h-screen px-5 my-10 flex justify-center items-center bg-fixed bg-cover bg-[url('/sign-up-bg-fixed.jpg')]">
+    <div className="p-5 flex justify-center items-center bg-fixed bg-cover bg-[url('/sign-up-bg-fixed.jpg')]">
       <div className="w-full mx-auto rounded-lg flex flex-col md:flex-row overflow-hidden">
-        <div className="w-full relative md:w-1/2 p-8 bg-[url('/log-in.png')] bg-contain bg-no-repeat bg-center bg-white"></div>
+        <div className="relative hidden md:block w-1/2 p-8 bg-[url('/log-in.png')] bg-contain bg-no-repeat bg-center bg-white"></div>
 
-        <div className="w-full md:w-1/2 p-8 bg-gray-50 rounded-lg">
-          <Image
-            src={"/Health-Click-Logo.png"}
-            className="mx-auto"
-            alt="Health-Click"
-            height={200}
-            width={200}
-          />
-
+        <div className="w-full md:w-1/2 p-2 md:p-8 bg-gray-50 rounded-lg">
+              <H3Grediant className="text-center text-xl font-semibold text-gray-800">Login to your account
+              </H3Grediant>
           <div className="mt-8">
             <form onSubmit={handleLoginUser}>
               <input
