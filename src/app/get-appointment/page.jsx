@@ -1,293 +1,131 @@
 "use client";
 
-import { H2 } from "@/components/eleProvider";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast";
+import { User, Mail, Calendar, FileText, Users, Info } from "lucide-react";
+import { H2Grediant } from "@/components/eleProvider";
+import { UseGlobalContext } from "../../../helpers/context";
 
-export const GetAppointmentPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
+export default function AppointmentPage() {
+  const { toast } = useToast();
+  const {user} = UseGlobalContext();
+
+  const [appointment, setAppointment] = useState({
+    name: user?.name ?? "",
     email: "",
-    appointmentDate: "",
     doctorType: "",
+    date: "",
     reason: "",
-    message: "",
+    age: "",
+    gender: "",
+    additionalInfo: "",
   });
 
-  const [emailSent, setEmailSent] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Validation check
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.appointmentDate ||
-      !formData.doctorType ||
-      !formData.reason ||
-      !formData.message
-    ) {
-      setStatusMessage("Please Fill all the Fields");
-      return; // Stop execution if any field is missing
+    setIsSubmitting(true);
+
+    if (!appointment.name || !appointment.email || !appointment.date || !appointment.doctorType || !appointment.reason) {
+      toast({
+        title: "Error",
+        description: "Please fill all the required fields.",
+        variant: "default",
+      });
+      setIsSubmitting(false);
+      return;
     }
-  
+
     const adminTemplateParams = {
-      user_name: formData.name,
-      user_email: formData.email,
-      appointment_date: formData.appointmentDate,
-      doctor_type: formData.doctorType,
-      appointment_reason: formData.reason,
-      message: formData.message,
+      user_name: appointment.name,
+      user_email: appointment.email,
+      appointment_date: appointment.date,
+      doctor_type: appointment.doctorType,
+      appointment_reason: appointment.reason,
+      message: appointment.additionalInfo,
     };
-  
-    const userTemplateParams = {
-      user_name: formData.name,
-      user_email: formData.email,
-      appointment_date: formData.appointmentDate,
-      doctor_type: formData.doctorType,
-      appointment_reason: formData.reason,
-      message: formData.message,
-    };
-  
-    // Email to admin
+
     emailjs
-      .send(
-        "service_fhxd08m",
-        "template_lnd9bwt",
-        adminTemplateParams,
-        "2Lq5yaxQBhKrIW7Ej"
-      )
-      .then(
-        (response) => {
-          console.log(
-            "Admin email sent successfully!",
-            response.status,
-            response.text
-          );
-  
-          // Email to user
-          emailjs
-            .send(
-              "service_fhxd08m",
-              "template_z597car",
-              userTemplateParams,
-              "2Lq5yaxQBhKrIW7Ej"
-            )
-            .then(
-              (response) => {
-                console.log(
-                  "User email sent successfully!",
-                  response.status,
-                  response.text
-                );
-                setEmailSent(true); // Set email sent status
-                setStatusMessage(
-                  "email sent successfully!",
-                  <br />,
-                  "Please Check Your Email"
-                );
-                setSuccessMsg("Your appointment request has been sent successfully!");
-              },
-              (error) => {
-                console.log("Failed to send user email...", error);
-                setStatusMessage("Please Fill all the Fields Correctly.");
-              }
-            );
-        },
-        (error) => {
-          console.log("Failed to send admin email...", error);
-          setStatusMessage("email sent successfully!", <br />, "Please Check Your Email");
-        }
-      );
-      console.log(formData);
+      .send("service_fhxd08m", "template_lnd9bwt", adminTemplateParams, "2Lq5yaxQBhKrIW7Ej")
+      .then(() => {
+        return emailjs.send("service_fhxd08m", "template_z597car", adminTemplateParams, "2Lq5yaxQBhKrIW7Ej");
+      })
+      .then(() => {
+        toast({
+          title: "Success",
+          description: "Appointment booked successfully! Check your email for details.",
+          variant: "default",
+        });
+        setAppointment({ name: "", email: "", doctorType: "", date: "", reason: "", age: "", gender: "", additionalInfo: "" });
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "Failed to book appointment. Please try again!",
+          variant: "default",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
-  
+
   return (
-    <>
-      <section className="container mx-auto w-full bg-[#f7f6f5] py-10 md:py-20 px-5 lg:px-10">
-        <div className="!relative w-full flex justify-start items-start flex-col lg:flex-row">
-          <div className="flex-1 lg:sticky top-20 z-10 size-full text-lg text-start flex justify-start items-start flex-col md:p-5 bg-[#f7f6f5]">
-            <H2 className="">See HealthClick in Action</H2>
-            <p className="text-lg mb-5">
-              Schedule an online doctor consultation today.
-            </p>
-            <ul className="space-y-2 mb-5">
-              <li>
-                <b className="text-primaryTeal">✔</b> Find the right doctor for
-                your needs
-              </li>
-              <li>
-                <b className="text-primaryTeal">✔</b> Get expert medical advice
-                anytime, anywhere
-              </li>
-              <li>
-                <b className="text-primaryTeal">✔</b> Book hassle-free
-                appointments online
-              </li>
-            </ul>
-            <div>
-              <p>
-                “ Trusted by thousands of patients for quality healthcare. ”
-              </p>
-            </div>
-            {
-                <p className="text-black font-semibold mt-6 text-start animate-bounce ">
-                  {statusMessage}
-                </p>
-              }
-          </div>
-          <div className="flex-1 bg-white flex justify-center mt-10 lg:mt-0 items-center flex-col size-full">
-            <form
-              noValidate
-              onSubmit={handleSubmit}
-              className="space-y-6 p-4 flex-1 w-full"
-            >
-              <div>
-                <label htmlFor="name" className="text-sm text-white">
-                  Full Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Your Full Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  autoCorrect="on"
-                  required
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="text-sm text-white">
-                  Email Address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  autoCorrect="on"
-                  required
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="appointmentDate" className="text-sm text-white">
-                  Appointment Date
-                </label>
-                <input
-                  id="appointmentDate"
-                  name="appointmentDate"
-                  type="date"
-                  value={formData.appointmentDate}
-                  onChange={(e) => {
-                    const selectedDate = new Date(e.target.value);
-                    const today = new Date();
-                    if (selectedDate < today) {
-                      alert("Past dates are not allowed!");
-                      e.target.value = today.toISOString().split("T")[0];
-                    }
-
-                    handleChange(e);
-                  }}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  autoCorrect="on"
-                  required
-                  min={new Date().toISOString().split("T")[0]} // Restricts past dates
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white after:text-white before:text-white placeholder-gray-400 autofill:bg-gray-800"
-                />
-              </div>
-              <div>
-                <label htmlFor="doctorType" className="text-sm text-white">
-                  Type of Doctor
-                </label>
-                <select
-                  id="doctorType"
-                  name="doctorType"
-                  value={formData.doctorType}
-                  onChange={handleChange}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  required
-                  autoCorrect="on"
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
-                >
-                  <option value="" disabled>
-                    Select Doctor Type
-                  </option>
-                  <option value="general">General Physician</option>
-                  <option value="cardiologist">Cardiologist</option>
-                  <option value="dermatologist">Dermatologist</option>
-                  <option value="pediatrician">Pediatrician</option>
-                  <option value="orthopedic">Orthopedic</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="reason" className="text-sm text-white">
-                  Reason for Appointment
-                </label>
-                <input
-                  id="reason"
-                  name="reason"
-                  type="text"
-                  placeholder="Reason for visit"
-                  value={formData.reason}
-                  onChange={handleChange}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  required
-                  autoCorrect="on"
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="text-sm text-white">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  placeholder="Additional information (optional)"
-                  value={formData.message}
-                  onChange={handleChange}
-                  autoComplete="on"
-                  autoCapitalize="on"
-                  autoCorrect="on"
-                  className="w-full p-3 mt-2 rounded bg-gray-800 text-white placeholder-gray-400 focus:ring-2"
-                />
-              </div>
-              <button
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="w-full bg-[url('/get-appointment.jpeg')] bg-cover bg-right p-4 py-10 md:py-20">
+      <div className="container mx-auto">
+        <motion.div className="mx-auto p-4 sm:p-8 rounded-lg shadow-[0_0_5px_2px_rgba(0,0,0,0.1)] backdrop-blur-sm">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-2xl font-bold text-center mb-6">
+            <H2Grediant className="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl mb-4">
+            Book an Appointment
+            </H2Grediant>
+          </motion.div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[
+              { name: "name", icon: <User />, placeholder: "Full Name", type: "text" },
+              { name: "email", icon: <Mail />, placeholder: "Email", type: "email" },
+              { name: "date", icon: <Calendar />, type: "date" },
+              { name: "doctorType", icon: <Users />, type: "select", options: ["General Physician", "Cardiologist", "Dermatologist", "Pediatrician", "Orthopedic"] },
+              { name: "reason", icon: <FileText />, placeholder: "Reason for visit", type: "text" },
+              { name: "additionalInfo", icon: <Info />, placeholder: "Additional Information (optional)", type: "textarea" },
+            ].map((field, index) => (
+              <motion.div key={field.name} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + index * 0.1 }}>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">{field.icon}</span>
+                  {field.type === "select" ? (
+                    <select name={field.name} value={appointment[field.name]} onChange={handleChange} required className="pl-10 w-full p-3 border rounded focus:outline-primaryTeal">
+                      <option value="" disabled>Select {field.placeholder}</option>
+                      {field.options.map((option) => (
+                        <option key={option} value={option.toLowerCase()}>{option}</option>
+                      ))}
+                    </select>
+                  ) : field.type === "textarea" ? (
+                    <textarea name={field.name} value={appointment[field.name]} onChange={handleChange} placeholder={field.placeholder} className="pl-10 w-full p-3 border rounded focus:outline-primaryTeal" />
+                  ) : (
+                    <input type={field.type} name={field.name} value={appointment[field.name]} onChange={handleChange} placeholder={field.placeholder} required className="pl-10 w-full p-3 border rounded focus:outline-primaryTeal" />
+                  )}
+                </div>
+              </motion.div>
+            ))}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+              <motion.button
                 type="submit"
-                className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-primaryTeal text-white hover:opacity-80"
+                whileTap={{ scale: 0.95 }}
+                className="w-full p-3 bg-primaryTeal text-white font-bold rounded hover:opacity-80"
+                disabled={isSubmitting}
               >
-                Book Appointment
-              </button>
-              {
-                <p className="text-black font-semibold mt-6 text-start animate-bounce ">
-                  {statusMessage}
-                </p>
-              }
-            </form>
-          </div>
-        </div>
-      </section>
-    </>
+                {isSubmitting ? "Submitting..." : "Book Appointment"}
+              </motion.button>
+            </motion.div>
+          </form>
+        </motion.div>
+      </div>
+    </motion.div>
   );
-};
-
-export default GetAppointmentPage;
+}
