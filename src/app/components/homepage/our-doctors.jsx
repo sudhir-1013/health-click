@@ -56,7 +56,7 @@ export default function OurDoctorsAnimated() {
       setActiveIndex((prevIndex) => (prevIndex === null ? 0 : (prevIndex + 1) % doctors.length))
     }, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [activeIndex])
 
   return (
     <div className="container bg-gray-100 mx-auto px-4 py-16 rounded-xl shadow-lg">
@@ -67,15 +67,14 @@ export default function OurDoctorsAnimated() {
           {doctors.map((doctor, index) => (
             <motion.div
               key={doctor.id}
-              initial={{ opacity: 0, y: 50 }}
+              onClick={() => setActiveIndex(index)} // <-- Add this line
               animate={{
                 opacity: activeIndex === index ? 1 : 0.5,
                 y: 0,
                 scale: activeIndex === index ? 1 : 0.95,
               }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`bg-white p-6 rounded-lg shadow-lg transform transition-all duration-300 ${
+              transition={{ duration: 0.5 }}
+              className={`bg-white p-6 rounded-lg shadow-lg transform transition-all duration-300 cursor-pointer ${
                 activeIndex === index ? "ring-4 ring-primaryTeal" : ""
               }`}
             >
