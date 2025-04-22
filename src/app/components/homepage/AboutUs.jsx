@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 import { H2, H2Grediant } from "@/components/eleProvider";
+import Link from "next/link";
 
 export default function AboutUs() {
   const accordionItems = [
@@ -87,25 +88,27 @@ export default function AboutUs() {
             access to quality care. We believe that your health journey should
             be simple, accessible, and stress-free.
           </p>
-          <button className="bg-primaryTeal mb-5 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-secondaryBlue transition">
-            <span>Know More About</span>
-            <span className="text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25L21 12m0 0-3.75 3.75M21 12H3"
-                />
-              </svg>
-            </span>
-          </button>
+          <Link href="/get-appointment">
+            <button className="bg-primaryTeal mb-5 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-secondaryBlue transition">
+              <span>Know More About</span>
+              <span className="text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25L21 12m0 0-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </span>
+            </button>
+          </Link>
         </div>
         <div className="flex-1 w-full">
           <Accordion />

@@ -8,7 +8,7 @@ import { H2Grediant } from "@/components/eleProvider";
 
 export default function HowItWorks() {
   return (
-    <section className="bg-[url('/concentric_background.png')]  bg-cover bg-fixed bg-no-repeat bg-opacity-20 text-[#333] px-5 lg:px-10 py-10 lg:py-20">
+    <section id="how-section" className="bg-[url('/concentric_background.png')]  bg-cover bg-fixed bg-no-repeat bg-opacity-20 text-[#333] px-5 lg:px-10 py-10 lg:py-20">
       <div className="container relative flex justify-center items-center md:items-start flex-col md:flex-row mx-auto">
 
         <div className="flex-1 md:sticky top-32 z-10">

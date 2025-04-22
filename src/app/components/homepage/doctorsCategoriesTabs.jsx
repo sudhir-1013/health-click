@@ -1,6 +1,7 @@
 import { FiExternalLink } from "react-icons/fi";
 import { Tabs } from "@/components/ui/tabs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DoctorCategoriesTabs() {
   const tabs = [
@@ -12,9 +13,9 @@ export default function DoctorCategoriesTabs() {
           <div className="w-full flex flex-col lg:flex-row justify-center py-5 items-center overflow-hidden relative h-full rounded-2xl p-4 md:p-10 text-xl md:text-2xl font-bold text-white">
             <div className="flex-1 flex flex-col">
               <div className="flex justify-start items-start -space-x-2">
-                  <div className="size-6 rounded-full bg-secondaryBlue"></div>
-                  <div className="size-6 rounded-full bg-primaryTeal"></div>
-                  <div className="size-6 rounded-full bg-secondaryPeach"></div>
+                <div className="size-6 rounded-full bg-secondaryBlue"></div>
+                <div className="size-6 rounded-full bg-primaryTeal"></div>
+                <div className="size-6 rounded-full bg-secondaryPeach"></div>
               </div>
               <p>
                 General Physicians provide primary healthcare services,
@@ -22,9 +23,11 @@ export default function DoctorCategoriesTabs() {
                 health conditions. They offer preventive care, health education,
                 and management of chronic diseases.
               </p>
-              <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
-                Book Now <FiExternalLink />
-              </button>
+              <Link href="/get-appointment">
+                <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
+                  Book Now <FiExternalLink />
+                </button>
+              </Link>
             </div>
             <div className="flex-1">
               <Image
@@ -45,10 +48,10 @@ export default function DoctorCategoriesTabs() {
         <>
           <div className="w-full flex flex-col lg:flex-row justify-center py-5 items-center overflow-hidden relative h-full rounded-2xl p-4 md:p-10 text-xl md:text-2xl font-bold text-white">
             <div className="flex-1 flex flex-col">
-            <div className="flex justify-start items-start -space-x-2">
-                  <div className="size-6 rounded-full bg-secondaryBlue"></div>
-                  <div className="size-6 rounded-full bg-primaryTeal"></div>
-                  <div className="size-6 rounded-full bg-secondaryPeach"></div>
+              <div className="flex justify-start items-start -space-x-2">
+                <div className="size-6 rounded-full bg-secondaryBlue"></div>
+                <div className="size-6 rounded-full bg-primaryTeal"></div>
+                <div className="size-6 rounded-full bg-secondaryPeach"></div>
               </div>
               <p>
                 Cardiologists specialize in diagnosing and treating
@@ -56,9 +59,11 @@ export default function DoctorCategoriesTabs() {
                 and arrhythmias. They also provide guidance on maintaining heart
                 health and preventing cardiovascular diseases.
               </p>
-              <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
-                Book Now <FiExternalLink />
-              </button>
+              <Link href="/get-appointment">
+                <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
+                  Book Now <FiExternalLink />
+                </button>
+              </Link>
             </div>
             <div className="flex-1">
               <Image
@@ -79,10 +84,10 @@ export default function DoctorCategoriesTabs() {
         <>
           <div className="w-full flex flex-col lg:flex-row justify-center py-5 items-center overflow-hidden relative h-full rounded-2xl p-4 md:p-10 text-xl md:text-2xl font-bold text-white">
             <div className="flex-1 flex flex-col">
-               <div className="flex justify-start items-start -space-x-2">
-                  <div className="size-6 rounded-full bg-secondaryBlue"></div>
-                  <div className="size-6 rounded-full bg-primaryTeal"></div>
-                  <div className="size-6 rounded-full bg-secondaryPeach"></div>
+              <div className="flex justify-start items-start -space-x-2">
+                <div className="size-6 rounded-full bg-secondaryBlue"></div>
+                <div className="size-6 rounded-full bg-primaryTeal"></div>
+                <div className="size-6 rounded-full bg-secondaryPeach"></div>
               </div>
               <p>
                 Dermatologists are experts in treating skin, hair, and nail
@@ -90,9 +95,11 @@ export default function DoctorCategoriesTabs() {
                 psoriasis, and skin cancer, and provide cosmetic treatments like
                 laser therapy and anti-aging procedures.
               </p>
-              <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
-                Book Now <FiExternalLink />
-              </button>
+              <Link href="/get-appointment">
+                <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
+                  Book Now <FiExternalLink />
+                </button>
+              </Link>
             </div>
             <div className="flex-1">
               <Image
@@ -113,10 +120,10 @@ export default function DoctorCategoriesTabs() {
         <>
           <div className="w-full flex flex-col lg:flex-row justify-center py-5 items-center overflow-hidden relative h-full rounded-2xl p-4 md:p-10 text-xl md:text-2xl font-bold text-white">
             <div className="flex-1 flex flex-col">
-               <div className="flex justify-start items-start -space-x-2">
-                  <div className="size-6 rounded-full bg-secondaryBlue"></div>
-                  <div className="size-6 rounded-full bg-primaryTeal"></div>
-                  <div className="size-6 rounded-full bg-secondaryPeach"></div>
+              <div className="flex justify-start items-start -space-x-2">
+                <div className="size-6 rounded-full bg-secondaryBlue"></div>
+                <div className="size-6 rounded-full bg-primaryTeal"></div>
+                <div className="size-6 rounded-full bg-secondaryPeach"></div>
               </div>
               <p>
                 Pediatricians specialize in medical care for infants, children,
@@ -124,9 +131,11 @@ export default function DoctorCategoriesTabs() {
                 development, and treat childhood illnesses to ensure the
                 well-being of young patients.
               </p>
-              <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
-                Book Now <FiExternalLink />
-              </button>
+              <Link href="/get-appointment">
+                <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
+                  Book Now <FiExternalLink />
+                </button>
+              </Link>
             </div>
             <div className="flex-1">
               <Image
@@ -147,10 +156,10 @@ export default function DoctorCategoriesTabs() {
         <>
           <div className="w-full flex flex-col lg:flex-row justify-center py-5 items-center overflow-hidden relative h-full rounded-2xl p-4 md:p-10 text-xl md:text-2xl font-bold text-white">
             <div className="flex-1 flex flex-col">
-               <div className="flex justify-start items-start -space-x-2">
-                  <div className="size-6 rounded-full bg-secondaryBlue"></div>
-                  <div className="size-6 rounded-full bg-primaryTeal"></div>
-                  <div className="size-6 rounded-full bg-secondaryPeach"></div>
+              <div className="flex justify-start items-start -space-x-2">
+                <div className="size-6 rounded-full bg-secondaryBlue"></div>
+                <div className="size-6 rounded-full bg-primaryTeal"></div>
+                <div className="size-6 rounded-full bg-secondaryPeach"></div>
               </div>
               <p>
                 Orthopedic doctors focus on the diagnosis and treatment of
@@ -158,9 +167,12 @@ export default function DoctorCategoriesTabs() {
                 arthritis, and sports injuries. They may perform surgeries or
                 recommend physical therapy for recovery.
               </p>
-              <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
-                Book Now <FiExternalLink />
-              </button>
+              <Link href="/get-appointment">
+                z
+                <button className="flex justify-center items-center gap-2 bg-secondaryBlue rounded-lg text-white text-lg float-start mr-full w-max px-8 py-2 mt-4">
+                  Book Now <FiExternalLink />
+                </button>
+              </Link>
             </div>
             <div className="flex-1">
               <Image
