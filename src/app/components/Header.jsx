@@ -108,17 +108,17 @@ export default function Header() {
             <nav className="flex flex-col gap-4 px-5 py-6 text-primaryTeal">
               <a
                 onClick={() => setIsSidebarOpen(false)}
-                href="#"
+                href="/get-appointment"
                 className="text-primaryTeal hover:text-secondaryBlue"
               >
                 Get Appointment
               </a>
               <a
                 onClick={() => setIsSidebarOpen(false)}
-                href="#"
+                href="/about"
                 className="text-primaryTeal hover:text-secondaryBlue"
               >
-                Our Doctors
+                About Us
               </a>
 
               {/* Show Profile button if user is logged in, otherwise show Login & Sign Up */}
@@ -154,18 +154,6 @@ export default function Header() {
               className="text-primaryTeal hover:text-secondaryBlue"
             >
               About Us
-            </Link>
-            <Link
-              href="/get-appointment"
-              className="text-primaryTeal hover:text-secondaryBlue"
-            >
-              Services
-            </Link>
-            <Link
-              href="#"
-              className="text-primaryTeal hover:text-secondaryBlue"
-            >
-              Our Doctors
             </Link>
             <Link
               href="/get-appointment"

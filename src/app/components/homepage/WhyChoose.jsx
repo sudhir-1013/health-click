@@ -94,7 +94,7 @@ export default function WhyChoose() {
 
         {/* Call to Action */}
         <div className="text-center mt-4">
-          <Link href="#">
+          <Link href="/get-appointment">
             <button className="px-8 py-3 bg-primaryTeal text-white text-lg font-medium rounded-full shadow-lg hover:opacity-90 transition-opacity">
               Book Your Consultation
             </button>

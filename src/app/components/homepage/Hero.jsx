@@ -3,6 +3,7 @@
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { FlipWords } from "@/components/ui/flip-words";
+import Link from "next/link";
 
 export default function HeroSection() {
   const words = ["Anytime", "Anywhere", "Anyway", "Anyplace"];
@@ -20,18 +21,22 @@ export default function HeroSection() {
             and schedule appointments conveniently from home.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start w-full gap-4">
-            <button
-              className="px-6 flex-1 w-full sm:px-10 py-3 bg-primaryTeal text-white rounded-md font-medium hover:opacity-90 transition-all duration-200 ease-in-out"
-              aria-label="Get Started with HealthClick"
-            >
-              Get Started
-            </button>
-            <button
-              className="px-6 flex-1 w-full sm:px-10 py-3 border border-primaryTeal rounded-md font-medium hover:border-primaryTeal hover:scale-95 transition-all duration-200 ease-in-out"
-              aria-label="Learn more about HealthClick"
-            >
-              Learn More
-            </button>
+            <Link href="/get-appointment">
+              <button
+                className="px-6 flex-1 w-full sm:px-10 py-3 bg-primaryTeal text-white rounded-md font-medium hover:opacity-90 transition-all duration-200 ease-in-out"
+                aria-label="Get Started with HealthClick"
+              >
+                Get Started
+              </button>
+            </Link>
+            <Link href="#how-section">
+              <button
+                className="px-6 flex-1 w-full sm:px-10 py-3 border border-primaryTeal rounded-md font-medium hover:border-primaryTeal hover:scale-95 transition-all duration-200 ease-in-out"
+                aria-label="Learn more about HealthClick"
+              >
+                Learn More
+              </button>
+            </Link>
           </div>
         </div>
         <div className="flex-1 relative hidden sm:flex justify-center items-center mt-10 lg:mt-0">
