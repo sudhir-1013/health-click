@@ -21,7 +21,7 @@ export async function RegisterUser(data) {
   }
 }
 
-export async function loginUser(formData, toast) {
+export async function loginUser(formData, toast, setIsAuth) {
   try {
     console.log("Sending login request with:", formData); // Debugging
 
@@ -41,6 +41,7 @@ export async function loginUser(formData, toast) {
         title: "Login Successful",
         description: `Welcome back! ${data.user.name || ""}`,
       });
+      setIsAuth()
       return data.user;
     } else {
       toast({

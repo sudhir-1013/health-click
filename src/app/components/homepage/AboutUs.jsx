@@ -1,72 +1,79 @@
-"use client"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown } from "lucide-react"
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 import { H2, H2Grediant } from "@/components/eleProvider";
 
 export default function AboutUs() {
+  const accordionItems = [
+    {
+      title: "What services does HealthClick offer?",
+      content:
+        "HealthClick allows patients to book appointments with qualified doctors online. We provide access to general physicians, specialists, diagnostic services, and health consultations—all from the comfort of your home.",
+    },
+    {
+      title: "How does the appointment booking process work?",
+      content:
+        "Patients can browse available doctors by specialty, location, or availability. Once a preferred doctor is selected, users can choose a time slot and confirm the appointment online. You'll receive instant confirmation and reminders.",
+    },
+    {
+      title: "Is there any support after booking an appointment?",
+      content:
+        "Yes, HealthClick offers ongoing support for appointment-related queries, cancellations, and rescheduling. Our team is available to help ensure you have a smooth and stress-free healthcare experience.",
+    },
+    {
+      title: "Are the doctors on HealthClick verified?",
+      content:
+        "Absolutely. All doctors listed on HealthClick go through a strict verification process, including credential checks and medical registration validation. Your health and safety are our top priorities.",
+    },
+  ];
 
-const accordionItems = [
-  {
-    title: "What services do you offer?",
-    content:
-      "We offer a wide range of services including web development, mobile app development, UI/UX design, and digital marketing solutions tailored to meet your business needs.",
-  },
-  {
-    title: "How long does a typical project take?",
-    content:
-      "Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a complex web application could take 3-6 months. We'll provide a detailed timeline during our initial consultation.",
-  },
-  {
-    title: "Do you offer ongoing support and maintenance?",
-    content:
-      "Yes, we offer various support and maintenance packages to ensure your digital products remain up-to-date, secure, and performing optimally. Our team is always ready to assist with any issues or updates you might need.",
-  },
-  {
-    title: "What technologies do you specialize in?",
-    content:
-      "We specialize in a wide array of modern technologies including React, Next.js, Node.js, Python, and various cloud platforms like AWS and Google Cloud. We stay up-to-date with the latest tech trends to provide cutting-edge solutions.",
-  },
-]
+  function Accordion() {
+    const [activeIndex, setActiveIndex] = useState(null);
 
-function Accordion() {
-  const [activeIndex, setActiveIndex] = useState(null)
-
-  return (
-    <div className="w-full mx-auto px-4">
-      <div className="space-y-4">
-        {accordionItems.map((item, index) => (
-          <div key={index} className="border border-primaryTeal rounded-lg overflow-hidden">
-            <button
-              onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-              className="flex justify-between items-center w-full p-4 text-left bg-white hover:bg-gray-50 transition-colors duration-300"
+    return (
+      <div className="w-full mx-auto px-4">
+        <div className="space-y-4">
+          {accordionItems.map((item, index) => (
+            <div
+              key={index}
+              className="border border-primaryTeal rounded-lg overflow-hidden"
             >
-              <span className="font-medium text-gray-800">{item.title}</span>
-              <motion.div animate={{ rotate: activeIndex === index ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                <ChevronDown className="w-5 h-5 text-primaryTeal" />
-              </motion.div>
-            </button>
-            <AnimatePresence initial={false}>
-              {activeIndex === index && (
+              <button
+                onClick={() =>
+                  setActiveIndex(activeIndex === index ? null : index)
+                }
+                className="flex justify-between items-center w-full p-4 text-left bg-white hover:bg-gray-50 transition-colors duration-300"
+              >
+                <span className="font-medium text-gray-800">{item.title}</span>
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="p-4 bg-gray-50 text-gray-600">{item.content}</div>
+                  <ChevronDown className="w-5 h-5 text-primaryTeal" />
                 </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
+              </button>
+              <AnimatePresence initial={false}>
+                {activeIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="p-4 bg-gray-50 text-gray-600">
+                      {item.content}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  )
-}
-
-
+    );
+  }
 
   return (
     <section className="py-16 px-4">
@@ -74,7 +81,11 @@ function Accordion() {
         <div className="flex-1 flex flex-col items-center md:items-start">
           <H2Grediant className="mb-4">WHO WE ARE</H2Grediant>
           <p className="text-lg sm:text-xl mb-5 text-center md:text-left max-w-7xl">
-            At HealthClick, we aim to redefine your healthcare experience by providing an intuitive platform that connects you with trusted doctors, streamlines appointment scheduling, and offers seamless access to quality care. We believe that your health journey should be simple, accessible, and stress-free.
+            At HealthClick, we aim to redefine your healthcare experience by
+            providing an intuitive platform that connects you with trusted
+            doctors, streamlines appointment scheduling, and offers seamless
+            access to quality care. We believe that your health journey should
+            be simple, accessible, and stress-free.
           </p>
           <button className="bg-primaryTeal mb-5 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-secondaryBlue transition">
             <span>Know More About</span>
@@ -97,7 +108,7 @@ function Accordion() {
           </button>
         </div>
         <div className="flex-1 w-full">
-          <Accordion/>
+          <Accordion />
         </div>
       </div>
     </section>
