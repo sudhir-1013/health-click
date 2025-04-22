@@ -1,32 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { User, Mail, Lock, Edit2, Camera } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { User, Mail, Lock, Edit2, Camera } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { UseGlobalContext } from "../../../../helpers/context";
 
 export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(false);
   const [user, setUser] = useState({
     name: "John Doe",
     email: "john@example.com",
     password: "********",
-  })
+  });
+  const router = useRouter();
+  const { isAuthenticated, setIsAuthenticated } = UseGlobalContext();
 
   const handleEdit = () => {
-    setIsEditing(!isEditing)
-  }
+    setIsEditing(!isEditing);
+  };
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsEditing(false)
+    e.preventDefault();
+    setIsEditing(false);
     // Here you would typically send the updated user data to your backend
-  }
+  };
 
   return (
     <div className="relative w-full mx-auto">
@@ -46,17 +50,20 @@ export default function ProfilePage() {
               whileTap={{ scale: 0.95 }}
               className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 relative"
             >
-              <Image width={32} height={32} src="/placeholder.svg?height=128&width=128" alt="Profile" className="w-full h-full object-cover" />
+              <Image
+                width={32}
+                height={32}
+                src="/placeholder.svg?height=128&width=128"
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                 <Camera className="text-white" />
               </div>
             </motion.div>
           </div>
           <form onSubmit={handleSubmit}>
-            <motion.div
-              initial={false}
-              className="space-y-4 min-h-max"
-            >
+            <motion.div initial={false} className="space-y-4 min-h-max">
               <div className="flex items-center space-x-4">
                 <User className="text-gray-400" />
                 <input
@@ -93,7 +100,9 @@ export default function ProfilePage() {
             </motion.div>
             <motion.div
               initial={false}
-              animate={isEditing ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+              animate={
+                isEditing ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }
+              }
               className="mt-6"
             >
               {isEditing && (
@@ -107,29 +116,36 @@ export default function ProfilePage() {
             </motion.div>
             <motion.div
               initial={true}
-              animate={isEditing ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }}
-              className="mt-6"
+              animate={
+                isEditing ? { opacity: 0, y: -20 } : { opacity: 1, y: 0 }
+              }
+              className="mt-6 flex w-fu justify-between items-center"
             >
-              {!isEditing && (
-                 <motion.button
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.95 }}
-                 onClick={handleEdit}
-                 className="top-4 right-4 p-2 rounded-full transition-colors"
-               >
-                 <button
-                     type="submit"
-                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-                   >
-                     Edit
-                   </button>
-               </motion.button>
-              )}
+              {/* {!isEditing && (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleEdit}
+                  className="top-4 right-4 p-2 transition-colors bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  type="submit"
+                >
+                  Edit
+                </motion.button>
+              )} */}
+              <button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  router.push("/auth/login");
+                  setIsAuthenticated(false);
+                }}
+                className="transition-all flex-1 duration-300 text-sm px-4 py-2 border bg-primaryTeal text-white rounded-md hover:bg-primaryTeal hover:text-white"
+              >
+                Logout
+              </button>
             </motion.div>
           </form>
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
-

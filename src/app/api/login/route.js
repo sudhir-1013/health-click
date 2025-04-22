@@ -41,7 +41,7 @@ export async function POST(req) {
     }
 
     const token = jwt.sign(
-      { userId: user._id, email: user.email , name : user.name },
+      { userId: user._id, email: user.email, name: user.name },
       "your_secret_key",
       { expiresIn: "1d" }
     );
@@ -52,7 +52,7 @@ export async function POST(req) {
       JSON.stringify({
         message: "Login successful",
         token,
-        user: { id: user._id, email: user.email, name : user.name },
+        user: { id: user._id, email: user.email, name: user.name },
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );

@@ -14,33 +14,36 @@ export default function Login() {
   });
 
   const router = useRouter();
-  
-  const {toast} = useToast();
-  const { user } = UseGlobalContext();
+
+  const { toast } = useToast();
+  const { user, isAuthenticated, setIsAuthenticated } = UseGlobalContext();
   useEffect(() => {
-    if (user) {
+    if (isAuthenticated) {
       router.push("/");
       toast({
-        title: `${user.name || "Sser"} is already logged in`,
-        description: `${user.name || "Sser"} is already logged in`,
+        title: `${user?.name || "User"} is already logged in`,
+        description: `${user?.name || "User"} is already logged in`,
         variant: "default",
       });
     }
-  }, [user, router, toast]);
-  
+  }, [isAuthenticated, router, toast, user?.name]);
+
   const handleInputValueChange = (e) => {
     const formInputName = e.target.name;
     const formInputValue = e.target.value;
     setLoginFormData({ ...loginFormData, [formInputName]: formInputValue });
   };
 
-  const handleLoginUser = (e) =>{
-    e.preventDefault()
-    loginUser(loginFormData, toast)
-    if(loginUser){
-      router.push("/")
+  const handleLoginUser = (e) => {
+    e.preventDefault();
+    const setIsAuth = () =>{
+      setIsAuthenticated(true)
     }
-  }
+    loginUser(loginFormData, toast, setIsAuth);
+    if (loginUser) {
+      router.push("/");
+    }
+  };
 
   console.log(loginFormData);
 
@@ -50,8 +53,9 @@ export default function Login() {
         <div className="relative hidden md:block w-1/2 p-8 bg-[url('/log-in.png')] bg-contain bg-no-repeat bg-center bg-white"></div>
 
         <div className="w-full md:w-1/2 p-2 md:p-8 bg-gray-50 rounded-lg">
-              <H3Grediant className="text-center text-xl font-semibold text-gray-800">Login to your account
-              </H3Grediant>
+          <H3Grediant className="text-center text-xl font-semibold text-gray-800">
+            Login to your account
+          </H3Grediant>
           <div className="mt-8">
             <form onSubmit={handleLoginUser}>
               <input
@@ -74,7 +78,10 @@ export default function Login() {
                 required
               />
 
-              <button type="submit" className="mt-5 w-full py-4 rounded-lg bg-primaryTeal text-white transition duration-300">
+              <button
+                type="submit"
+                className="mt-5 w-full py-4 rounded-lg bg-primaryTeal text-white transition duration-300"
+              >
                 Login
               </button>
             </form>
