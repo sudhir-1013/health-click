@@ -21,41 +21,36 @@ export async function RegisterUser(data) {
   }
 }
 
+
 export async function loginUser(formData, toast, setIsAuth) {
   try {
-    console.log("Sending login request with:", formData); // Debugging
+    console.log("Sending login request with:", formData);
 
     const res = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData), // FIXED: Removed extra wrapping
+      body: JSON.stringify(formData),
     });
 
     const data = await res.json();
-
-    console.log("Response received:", data); // Debugging
+    console.log("Response received:", data);
 
     if (res.ok) {
       localStorage.setItem("token", data.token);
-      toast({
-        title: "Login Successful",
-        description: `Welcome back! ${data.user.name || ""}`,
-      });
-      setIsAuth()
-      return data.user;
+      setIsAuth();
+      return {
+        success: true,
+        user: data.user,
+        message: `Welcome back! ${data.user.name || ""}`
+      };
     } else {
-      toast({
-        title: "Login Failed",
-        description: data.message || "Invalid credentials",
-        variant: "default",
-      });
+      return {
+        success: false,
+        message: data.message || "Invalid credentials"
+      };
     }
   } catch (err) {
-    console.log("Login Error:", err); // Debugging
-    toast({
-      title: "Error",
-      description: "Something went wrong. Please try again!",
-      variant: "default",
-    });
+    console.log("Login Error:", err);
+    throw new Error("Something went wrong. Please try again!");
   }
 }

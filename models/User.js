@@ -1,4 +1,3 @@
-// User.js
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
@@ -16,10 +15,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
   },
   {
-    timestamps: true, // Automatically adds `createdAt` and `updatedAt`
+    timestamps: true,
   }
 );
 

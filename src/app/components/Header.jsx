@@ -69,7 +69,6 @@ export default function Header() {
             </svg>
           </button>
 
-          {/* Sidebar for mobile */}
           <div
             className={`fixed top-0 w-full left-0 h-full bg-white shadow-lg z-40 transform ${
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -149,6 +148,14 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:!flex justify-center items-center gap-4 lg:gap-6">
+            {user?.role === "admin" && (
+              <Link
+                href="/admin/dashboard"
+                className="text-primaryTeal hover:text-secondaryBlue"
+              >
+                Admin
+              </Link>
+            )}
             <Link
               href="/about"
               className="text-primaryTeal hover:text-secondaryBlue"

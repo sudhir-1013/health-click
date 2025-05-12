@@ -21,8 +21,6 @@ export const metadata = {
   description: "Doctor Appointment Site",
   icons: {
     icon: "/favicon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
 };
 

@@ -24,3 +24,13 @@ h1,h2, h3, h4{
 #appointmentDate[type="date"] {
     color-scheme: dark; /* Ensures icons and elements match dark themes */
   }
+
+  .no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+ 
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}

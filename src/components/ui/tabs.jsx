@@ -22,7 +22,7 @@ export const Tabs = ({
     setActive(newTabs[0]);
   };
 
-  const [hovering, setHovering] = useState(true);
+  const [hovering, setHovering] = useState(false);
 
   return (
     <>
@@ -39,7 +39,7 @@ export const Tabs = ({
               moveSelectedTabToTop(idx);
             }}
             onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
             className={cn("relative px-4 py-2 rounded-full", tabClassName)}
             style={{
               transformStyle: "preserve-3d",

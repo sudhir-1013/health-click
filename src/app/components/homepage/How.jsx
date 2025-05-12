@@ -18,7 +18,7 @@ export default function HowItWorks() {
           right doctor to booking your appointment, HealthClick ensures a
           smooth, reliable, and hassle-free experience for patients.
         </p>
-        <Image src={'/how-icons/How.png'} width={600} height={600} alt="How HealthClick Works"/>
+        <Image src={'/how-icons/How.png'} sizes="auto" width={600} height={600} className="h-auto" alt="How HealthClick Works"/>
         </div>
         <div className="flex-1 flex flex-col justify-end items-end space-y-10">
   <Tilt
