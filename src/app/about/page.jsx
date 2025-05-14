@@ -8,6 +8,8 @@ import AboutUs from "../components/homepage/AboutUs";
 import HowItWorks from "../components/homepage/How";
 import WhyChoose from "../components/homepage/WhyChoose";
 import GetAppointment from "../components/homepage/GetAppointment";
+import HeroSection from "../components/about/hero-section";
+import MissionSection from "../components/about/mission-section";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -33,6 +35,8 @@ export default function ProfilePage() {
 
   return (
     <>
+      <HeroSection />
+      <MissionSection />
       <AboutUs />
       <HowItWorks />
       <WhyChoose />

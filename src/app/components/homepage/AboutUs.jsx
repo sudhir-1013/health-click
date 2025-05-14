@@ -88,7 +88,7 @@ export default function AboutUs() {
             access to quality care. We believe that your health journey should
             be simple, accessible, and stress-free.
           </p>
-          <Link href="/get-appointment">
+          <Link href="/about">
             <button className="bg-primaryTeal mb-5 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-secondaryBlue transition">
               <span>Know More About</span>
               <span className="text-white">

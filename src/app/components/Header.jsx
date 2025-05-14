@@ -157,16 +157,22 @@ export default function Header() {
               </Link>
             )}
             <Link
+              href="/get-appointment"
+              className="text-primaryTeal hover:text-secondaryBlue"
+            >
+              Get Appointment
+            </Link>
+            <Link
               href="/about"
               className="text-primaryTeal hover:text-secondaryBlue"
             >
               About Us
             </Link>
             <Link
-              href="/get-appointment"
+              href="/contact"
               className="text-primaryTeal hover:text-secondaryBlue"
             >
-              Get Appointment
+              Contact Us
             </Link>
 
             {/* Show Profile button if user is logged in, otherwise show Login & Sign Up */}

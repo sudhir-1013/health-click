@@ -4,7 +4,7 @@ import { H2Grediant } from "../../../components/eleProvider";
 export default function GetAppointment() {
   return (
     <section className="bg-[url('/GetAppointment.jpg')] bg-cover bg-center bg-fixed  relative overflow-hidden">
-      <div className="size-full backdrop-blur-md text-center bg-white bg-opacity-0 px-5 py-10 lg:py-20 lg:px-20">
+      <div className="size-full backdrop-blur-sm text-center bg-white bg-opacity-0 px-5 py-10 lg:py-20 lg:px-20">
         <H2Grediant>Ready to Book Your Appointment?</H2Grediant>
         <p className="text-lg lg:text-xl mb-8 mx-auto max-w-4xl">
           Don’t wait for your health. Connect with a trusted doctor at your convenience. Get started today and book your appointment in just a few clicks!
